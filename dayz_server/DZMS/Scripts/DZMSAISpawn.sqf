@@ -45,8 +45,8 @@ for "_x" from 1 to _unitcount do {
 	_unit setBehaviour "COMBAT";
 	
 	//Bank
-    _cash = round(random 20) * 50 + 10; // number between 0 and 20 000
-    //_cash = 500
+    //_cash = round(random 20) * 50 + 10; // number between 0 and 20 000
+    _cash = 500
     // Soul Hive
 	_unit setVariable["CashMoney",_cash ,true];
   
@@ -64,7 +64,7 @@ for "_x" from 1 to _unitcount do {
 	_weapon = _weaponArray select 0;
 	_magazine = _weaponArray select 1;
 	
-	//diag_log text format ["[DZMS]: AI Weapon:%1 / AI Magazine:%2",_weapon,_magazine];
+	diag_log text format ["[DZMS]: AI Weapon:%1 / AI Magazine:%2 / Money:%3",_weapon,_magazine,_cash];
 	
 	//Get the gear array
 	_aigearArray = [DZMSGear0,DZMSGear1,DZMSGear2,DZMSGear3,DZMSGear4];
