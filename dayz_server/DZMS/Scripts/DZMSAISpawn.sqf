@@ -45,8 +45,8 @@ for "_x" from 1 to _unitcount do {
 	_unit setBehaviour "COMBAT";
 	
 	//Bank
-    //_cash = round(random 20) * 50 + 10; // number between 0 and 20 000
-    _cash = 500
+    _cash = round(random 20) * 50 + 10; // number between 0 and 20 000
+    
     // Soul Hive
 	_unit setVariable[Z_moneyVariable,_cash,true];
   
