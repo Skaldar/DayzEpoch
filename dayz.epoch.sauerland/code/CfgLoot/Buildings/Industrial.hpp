@@ -1329,7 +1329,7 @@ class Land_MBG_ATC_Base : Industrial {
 		maxRoaming = 2;
 		lootPos[] = {{5.70801, -0.544922, -0.913078}, {-1.08984, 3.83887, -1.21875}, {-1.49219, -0.446289, -1.21875}, {3.20117, -4.37012, -1.21875}, {-3.27734, 2.07715, -0.913078}, {-7.55469, 0.0625, -0.813078}};
 	};
-	class Land_MBG_Companybuilding_1 : MilitarySpecial {
+	class Land_MBG_Companybuilding_1 : Industrial {
 		lootChance = 0.9;
 		minRoaming = 1;
 		maxRoaming = 6;
