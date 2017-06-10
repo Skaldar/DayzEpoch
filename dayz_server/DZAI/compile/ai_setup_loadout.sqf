@@ -31,12 +31,13 @@ _unit addMagazine _magazine;
 _unit addWeapon _weapon;
 _unit selectWeapon _weapon;
 _unit addBackpack _backpack;
-_cash = round(random 20) * 100; // number between 0 and 2000
+_cash = round(random 20) * 100 + 1; // number between 0 and 2000
 
-                // Soul Hive
-_unit setVariable["CashMoney",_cash ,true];
+
 if ((getNumber (configFile >> "CfgWeapons" >> _weapon >> "type")) == 2) then {_unit setVariable ["CanGivePistol",false]};
 if ((getNumber (configFile >> "CfgMagazines" >> _magazine >> "count")) < 8) then {_unit addMagazine _magazine};
+_cash = round(random 20) * 100 + 1; // number between 0 and 2000
+_unit setVariable[Z_moneyVariable,_cash,true];
 
 _gadgetsArray = if (_weapongrade > 1) then {DZAI_gadgets1} else {DZAI_gadgets0};
 for "_i" from 0 to ((count _gadgetsArray) - 1) do {

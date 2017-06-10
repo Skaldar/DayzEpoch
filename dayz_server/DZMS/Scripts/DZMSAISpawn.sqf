@@ -48,7 +48,7 @@ for "_x" from 1 to _unitcount do {
     //_cash = round(random 20) * 50 + 10; // number between 0 and 20 000
     _cash = 500
     // Soul Hive
-	_unit setVariable["CashMoney",_cash ,true];
+	_unit setVariable[Z_moneyVariable,_cash,true];
   
 	//End Bank
 	
