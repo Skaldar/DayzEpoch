@@ -1,5 +1,5 @@
 private ["_gun","_ammo","_HEammo","_gear","_gunOne","_gunTwo","_player"];
-_handGuns = ["UZI_SD_EP1","glock17_EP1","revolver_EP1","revolver_gold_EP1","UZI_EP1","Sa61_EP1","M9","M9SD","Colt1911","Makarov","MakarovSD"];
+_handGuns = ["UZI_SD_EP1","G17_FL_DZ","Revolver_DZ","revolver_gold_EP1","PDW_DZ","Sa61_EP1","M9_DZ","M9_SD_DZ","M1911_DZ","Makarov_DZ","Makarov_SD_DZ"];
 _gun = _this select 0;
 _ammo = _this select 1;
 _HEammo = _this select 2;
@@ -10,10 +10,10 @@ _gunOne = (weapons _player) select 0;
 _gunTwo = (weapons _player) select 1;
 
 // Remove the correct player weapon
-if(_gun in _handGuns) then{
-	if(_gunOne in _handGuns) then {_player removeWeapon _gunOne;} else {_player removeWeapon _gunTwo;};
+if(_gun in _handGuns) then {
+	if(!isNil _gunOne && _gunOne in _handGuns) then {_player removeWeapon _gunOne;} else {if(!isNil _gunTwo) then {_player removeWeapon _gunTwo;};};
 } else {
-	if(_gunOne in _handGuns) then {_player removeWeapon _gunTwo;} else {_player removeWeapon _gunOne;};
+	if(!isNil _gunTwo && _gunOne in _handGuns) then {_player removeWeapon _gunTwo;} else {if(!isNil _gunOne) then {_player removeWeapon _gunOne;};};
 };
 
 // Add Items

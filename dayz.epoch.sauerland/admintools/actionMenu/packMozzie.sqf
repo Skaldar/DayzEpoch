@@ -2,22 +2,21 @@ private ["_player","_vehicle","_ctType","_inVehicle","_ct","_canDo","_onLadder",
 
 _player = player; //Setting a local variable as player saves resources
 _vehicle = vehicle _player;
-_canDo = call fnc_actionAllowed;
+_canDo = call EAT_fnc_actionAllowed;
 _ct = cursorTarget;
 _ctType = typeOf _ct;
 _distance = _player distance _ct;
 
 
 /********** Exit sequences **********/
-if(isNull _ct || _ctType != "CSJ_GyroC") exitWith {cutText ["Target is not a player built mozzie.", "PLAIN DOWN"];};
-if(_ct getVariable ["MalSar",0] != 1) exitWith {cutText ["Target is not a player built mozzie.", "PLAIN DOWN"];};
-if(dayz_combat == 1) exitWith {cutText ["You are in Combat and cannot pack a mozzie.", "PLAIN DOWN"];};
+if(isNull _ct || _ctType != "CSJ_GyroC" || (_ct getVariable ["EAT_Veh",0] != 1)) exitWith {cutText ["Target is not a player built mozzie.", "PLAIN DOWN"];};
+if(_player getVariable["inCombat",false]) exitWith {cutText ["You are in Combat and cannot pack a mozzie.", "PLAIN DOWN"];};
 if(!(_canDo)) exitWith {cutText ["You are in a vehicle or already performing an action","PLAIN DOWN"];};
 if(_distance > 3) exitWith {cutText ["You must be within 3 meters of the mozzie to pack it","PLAIN DOWN"];};
 /********** End Exit sequences **********/
 
 
-DZE_ActionInProgress = true;
+dayz_actionInProgress = true;
 
 _player playActionNow "Medic";
 [_player,"repair",0,false,10] call dayz_zombieSpeak;
@@ -47,18 +46,18 @@ if (_finished) then {
 		
 	_objectID = _ct getVariable ["ObjectID", "0"];
 	_objectUID = _ct getVariable ["ObjectUID", "0"];
-	PVDZE_obj_Delete = [_objectID, _objectUID, (name _player)];
-	publicVariableServer "PVDZE_obj_Delete";
+	PVDZ_obj_Destroy = [_objectID, _objectUID, (name _player)];
+	publicVariableServer "PVDZ_obj_Destroy";
 
 	deleteVehicle _ct;
-	if(RequirePartsMozzie) then {
+	if(EAT_RequireToolBoxMozzie) then {
 		_player addMagazine "PartGeneric";
 		_player addMagazine "PartGeneric";
 		_player addMagazine "PartEngine";
 		_player addMagazine "ItemJerrycan";
 		_player addMagazine "PartVRotor";
 	};
-	if(RequireToolBoxMozzie) then {
+	if(EAT_RequireToolBoxMozzie) then {
 		_player addWeapon "ItemToolbox";
 	};
 		
@@ -71,4 +70,4 @@ if (_finished) then {
 	cutText ["\n\nCanceled pack mozzie!", "PLAIN DOWN",4];
 };
 
-DZE_ActionInProgress = false;
+dayz_actionInProgress = false;

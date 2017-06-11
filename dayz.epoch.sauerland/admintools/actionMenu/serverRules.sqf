@@ -6,19 +6,14 @@
 */
 
 "Server Rules" hintC parseText format ["
-<t size='1.1' shadow='1'align='left' color='#FFFFFF'>No basing in high loot areas</t><br/>
-<t size='.7' shadow='1'align='left' color='#FFFFFF'></t><br/>
-<t size='1.1' shadow='1'align='left' color='#FFFFFF'>No camping traders for any reason</t><br/>
-<t size='.7' shadow='1'align='left' color='#FFFFFF'></t><br/>
-<t size='1.1' shadow='1'align='left' color='#FFFFFF'>No stealing from or destroying locked vehicles</t><br/>
-<t size='.7' shadow='1'align='left' color='#FFFFFF'></t><br/>
-<t size='1.1' shadow='1'align='left' color='#FFFFFF'>No mic in side chat</t><br/>
-<t size='.7' shadow='1'align='left' color='#FFFFFF'></t><br/>
-<t size='1.1' shadow='1'align='left' color='#FFFFFF'>Base raiding is allowed, just don't be a dick about it</t><br/>
-<t size='.7' shadow='1'align='left' color='#FFFFFF'></t><br/>
-<t size='1.1' shadow='1'align='left' color='#FFFFFF'>Only ask for admins if absolutely necessary</t><br/>
-<t size='.7' shadow='1'align='left' color='#FFFFFF'></t><br/>
-<t size='1.1' shadow='1'align='left' color='#FFFFFF'>To get admin help ask in side chat or in TeamSpeak</t><br/>
-<t size='.7' shadow='1'align='left' color='#FFFFFF'></t><br/>
-<t size='1.1' shadow='1'align='left' color='#FFFFFF'>Place TeamSpeak IP here</t><br/>
+<t size='1.1' shadow='1'align='left' color='#FFFFFF'>Missionen(DZMS):</t><br/>
+<t size='.7' shadow='1'align='left' color='#FFFFFF'></t>Gleichzeitig sind 2 Missionen gegen Banditen und eine Schatzsuche verfügbar<br/>
+<t size='1.1' shadow='1'align='left' color='#FFFFFF'>KI-Patrouille(DZAI):</t><br/>
+<t size='.7' shadow='1'align='left' color='#FFFFFF'></t>Die KIs patrouillieren zu Fuß und in Land- und Luftfahrzeugen - Vorsicht in Städten!<br/>
+<t size='1.1' shadow='1'align='left' color='#FFFFFF'>Geld</t><br/>
+<t size='.7' shadow='1'align='left' color='#FFFFFF'></t>Statt Gold und Silber wird nun mit Reichsmark gehandelt<br/>
+<t size='1.1' shadow='1'align='left' color='#FFFFFF'>News</t><br/>
+<t size='.7' shadow='1'align='left' color='#FFFFFF'></t>Reich oder Spritverschwendung? Das Lottosystem der Schatzkisten<br/>
+<t size='1.1' shadow='1'align='left' color='#FFFFFF'>Heil dem Admin</t><br/>
+<t size='1.1' shadow='1'align='left' color='#FFFFFF'>Mumble: mumble.nitrado.net:17900</t><br/>
 "];

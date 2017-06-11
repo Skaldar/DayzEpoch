@@ -218,7 +218,7 @@ fn_BCExport = {
 	_export = "";
 	_position = BC_center;
 	_distance = BC_radius;
-	_nearest_objects = nearestObjects [[_position select 0, _position select 1], dayz_allowedObjects, _distance];
+	_nearest_objects = nearestObjects [[_position select 0, _position select 1], DayZ_SafeObjects, _distance];
 	_objectCount = count _nearest_objects;
 	_i = 1;
 	{
@@ -242,16 +242,16 @@ fn_BCExport = {
 		_i = _i + 1;
 	} count _nearest_objects;
 	
-	EAT_baseExporter = _export;
-	[] spawn {publicVariableServer "EAT_baseExporter"};
+	EAT_PVEH_baseExporter = _export;
+	[] spawn {publicVariableServer "EAT_PVEH_baseExporter"};
 
 	systemChat format["Exported base to server\EpochAdminTools\Bases.sqf"];
 	showCommandingMenu "#USER:BCMainMenu";
 
 	// Tool use logger
-	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has exported a base",name _player,getPlayerUID _player];
-		publicVariable "usageLogger";
+	if(EAT_logMinorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has exported a base",name _player,getPlayerUID _player];
+		publicVariable "EAT_PVEH_usageLogger";
 	};
 
 	_objects
@@ -266,7 +266,7 @@ fn_BCCopy = {
 	_objects = [];
 	_position = BC_center;
 	_distance = BC_radius;
-	_nearest_objects = nearestObjects [[_position select 0, _position select 1], dayz_allowedObjects, _distance];
+	_nearest_objects = nearestObjects [[_position select 0, _position select 1], DayZ_SafeObjects, _distance];
 	{
 		private ["_obj_type", "_direction", "_obj_position", "_relative_position", "_row"];
 		_obj_type = typeOf _x;
@@ -302,9 +302,9 @@ fn_BCPaste = {
 	[_base_objects] call fn_BCBuildbase;
 
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has pasted a copied base",name _player,getPlayerUID _player];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has pasted a copied base",name _player,getPlayerUID _player];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};	
 };
 
@@ -336,7 +336,7 @@ fn_BCConfirmDelete = {
 	_objectClasses = [];
 
 	if (BD_Buildables) then {
-		_objectClasses = dayz_allowedObjects;
+		_objectClasses = DayZ_SafeObjects;
 	};
 	if (BD_vehicles) then {
 		_objectClasses = _objectClasses + ["LandVehicle","Helicopter","Plane","Ship"];
@@ -354,42 +354,31 @@ fn_BCConfirmDelete = {
 		deleteVehicle _x;
 		_objectID = _x getVariable ["ObjectID", "0"];
 		_objectUID = _x getVariable ["ObjectUID", "0"];
-		PVDZE_obj_Delete = [_objectID, _objectUID, (name player)];
-		publicVariableServer "PVDZE_obj_Delete";
+		PVDZ_obj_Destroy = [_objectID, _objectUID, (name player)];
+		publicVariableServer "PVDZ_obj_Destroy";
 	} forEach _objects;
 
 	[format["<t size='0.6'>Deleted %1 objects</t>", count _objects],0,0.8,0.5,0,0,8] spawn BIS_fnc_dynamicText;
 
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has deleted %3 items using deletebase",name _player,getPlayerUID _player,count _objects];
-		[] spawn {publicVariable "usageLogger";};
-	};
-	// Tool use broadcaster
-	if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has deleted base items",name _player];
-		[] spawn {publicVariableServer "useBroadcaster";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has deleted %3 items using deletebase",name _player,getPlayerUID _player,count _objects];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 };
 
 fn_BCSaveToDb = {
 	{
-		PVDZE_obj_Publish = [_x getVariable ["CharacterID", dayz_characterID],_x,[getDir _x, getPosATL _x], typeOf _x];
-		publicVariableServer "PVDZE_obj_Publish";
+		PVDZ_obj_Publish = [_x getVariable ["CharacterID", dayz_characterID],_x,[getDir _x, getPosATL _x], typeOf _x];
+		publicVariableServer "PVDZ_obj_Publish";
 	} count BCCurrentBase;
 	[format["<t size='0.6'>Added %1 objects to database</t>", count BCCurrentBase],0,0.8,0.5,0,0,8] spawn BIS_fnc_dynamicText;
 	
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has placed a saved base",name _player,getPlayerUID _player];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has placed a saved base",name _player,getPlayerUID _player];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
-	// Tool use broadcaster
-	if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has placed a base",name _player];
-		[] spawn {publicVariableServer "useBroadcaster";};
-	};
-
 };
 
 fn_BCCancelBase = {

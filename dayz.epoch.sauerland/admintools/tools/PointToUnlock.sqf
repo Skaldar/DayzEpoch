@@ -23,9 +23,9 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 	s_player_lockUnlock_crtl = -1;
 
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has unlocked vehicle: %3 with ID:%4",name _player,getPlayerUID _player,_obj,_objectID];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has unlocked vehicle: %3 with ID:%4",name _player,getPlayerUID _player,_obj,_objectID];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 } else {
 	// Unlock Safe/Lock_Box
@@ -98,16 +98,10 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 		};
 
 		// Tool use logger
-		if(logMajorTool) then {
-			usageLogger = format["%1 %2 -- has unlocked a safe - ID:%3 UID:%4",name _player,getPlayerUID _player,_objectID,_ownerID];
-			[] spawn {publicVariable "usageLogger";};
-		};
-		// Tool use broadcaster
-		if(broadcastToolUse) then {
-			useBroadcaster = "Admin -- has forcibly unlocked a safe";
-			[] spawn {publicVariableServer "useBroadcaster";};
-		};
-		
+		if(EAT_logMajorTool) then {
+			EAT_PVEH_usageLogger = format["%1 %2 -- has unlocked a safe - ID:%3 UID:%4",name _player,getPlayerUID _player,_objectID,_ownerID];
+			[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		};		
 	} else {
 
 		_objectCharacterID = _obj getVariable ["CharacterID","0"];
@@ -121,14 +115,9 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 		if(_obj animationPhase "RightShutter" == 0) then {_obj animate ["RightShutter", 1];};
 		
 		// Tool use logger
-		if(logMajorTool) then {
-			usageLogger = format["%1 %2 -- has unlocked a door - ID:%3 Combo:%4",name _player,getPlayerUID _player,_objectID,_objectCharacterID];
-			[] spawn {publicVariable "usageLogger";};
-		};
-		// Tool use broadcaster
-		if(broadcastToolUse) then {
-			useBroadcaster = "Admin -- has forcibly unlocked a door";
-			[] spawn {publicVariableServer "useBroadcaster";};
+		if(EAT_logMajorTool) then {
+			EAT_PVEH_usageLogger = format["%1 %2 -- has unlocked a door - ID:%3 Combo:%4",name _player,getPlayerUID _player,_objectID,_objectCharacterID];
+			[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 		};
 	};
 };

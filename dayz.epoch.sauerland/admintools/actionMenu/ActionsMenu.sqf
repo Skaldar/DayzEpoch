@@ -9,7 +9,7 @@ _EXECscript3 = '["%1"] execVM "admintools\actionMenu\FunMenu\movements.sqf"';
 _EXECscript4 = '[%1] execVM "admintools\actionMenu\contactAdmin.sqf"';
 ActionMenu = [["",true],["-- Action Menu --", [], "", -5, [["expression", ""]], "1", "0"]];
 
-if((getPlayerUID player) in AdminList ||(getPlayerUID player) in ModList) then {
+if(EAT_isAdmin) then {
 
 	/*
 		This menu is for the Admins or Mods listed in the Epoch Admin Tools.
@@ -24,24 +24,23 @@ if((getPlayerUID player) in AdminList ||(getPlayerUID player) in ModList) then {
 	ActionMenu = ActionMenu + [["", [], "", -5, [["expression", ""]], "1", "0"],["Exit", [20], "", -5, [["expression", ""]], "1", "1"]];
 
 } else {
-
 	// This menu is for normal players only. If you have an admin listed, they will use the menu above.
 
 	ActionMenu = ActionMenu + [["Action Menu >>", [], "#USER:ActionsMenu", -5, [["expression", ""]], "1", "1"]];
 	if(AllowMovementMenu) then {ActionMenu = ActionMenu + [["Movement Menu >>",[],"#USER:MovementMenu", -5,[["expression",""]],"1","1"]];};
 	ActionMenu = ActionMenu + [["Server Rules", [], "", -5, [["expression", format[_EXECscript1,"serverRules.sqf"]]], "1", "1"]];
-	if(AllowContactAdmin) then {ActionMenu = ActionMenu + [["Contact an Admin", [], "", -5, [["expression", format[_EXECscript4,false]]], "1", "1"]];};
-	if(AllowContactAdmin) then {ActionMenu = ActionMenu + [["Cancel Admin Ticket", [], "", -5, [["expression", format[_EXECscript4,true]]], "1", "1"]];};
+	if(EAT_AllowContactAdmin) then {ActionMenu = ActionMenu + [["Contact an Admin", [], "", -5, [["expression", format[_EXECscript4,false]]], "1", "1"]];};
+	if(EAT_AllowContactAdmin) then {ActionMenu = ActionMenu + [["Cancel Admin Ticket", [], "", -5, [["expression", format[_EXECscript4,true]]], "1", "1"]];};
 	ActionMenu = ActionMenu + [["", [], "", -5, [["expression", ""]], "1", "0"],["Exit", [20], "", -5, [["expression", ""]], "1", "1"]];
 };
 
 ActionsMenu = [["",true],["-- Action Menu --", [], "", -5, [["expression", ""]], "1", "0"]];
-if(AllowBuildBike) then {ActionsMenu = ActionsMenu + [["Build Bike", [], "", -5, [["expression", format[_EXECscript1,"deployBike.sqf"]]], "1", "1"]];};
-if(AllowBuildMozzie) then {ActionsMenu = ActionsMenu + [["Build Mozzie", [],  "", -5, [["expression", format[_EXECscript1,"deployMozzie.sqf"]]], "1", "1"]];};
-if(AllowPackBike) then {ActionsMenu = ActionsMenu + [["Pack Bike", [], "", -5, [["expression", format[_EXECscript1,"packBike.sqf"]]], "1", "1"]];};
-if(AllowPackMozzie) then {ActionsMenu = ActionsMenu + [["Pack Mozzie", [], "", -5, [["expression", format[_EXECscript1,"packMozzie.sqf"]]], "1", "1"]];};
-if(AllowFlipVehicle) then {ActionsMenu = ActionsMenu + [["Flip Vehicle", [], "", -5, [["expression", format[_EXECscript1,"flipVehicle.sqf"]]], "1", "1"]];};
-if(AllowSuicide) then {ActionsMenu = ActionsMenu + [["Suicide", [], "", -5, [["expression", format[_EXECscript1,"suicide.sqf"]]], "1", "1"]];};
+if(EAT_AllowBuildBike) then {ActionsMenu = ActionsMenu + [["Build Bike", [], "", -5, [["expression", format[_EXECscript1,"deployBike.sqf"]]], "1", "1"]];};
+if(EAT_AllowBuildMozzie) then {ActionsMenu = ActionsMenu + [["Build Mozzie", [],  "", -5, [["expression", format[_EXECscript1,"deployMozzie.sqf"]]], "1", "1"]];};
+if(EAT_AllowPackBike) then {ActionsMenu = ActionsMenu + [["Pack Bike", [], "", -5, [["expression", format[_EXECscript1,"packBike.sqf"]]], "1", "1"]];};
+if(EAT_AllowPackMozzie) then {ActionsMenu = ActionsMenu + [["Pack Mozzie", [], "", -5, [["expression", format[_EXECscript1,"packMozzie.sqf"]]], "1", "1"]];};
+if(EAT_AllowFlipVehicle) then {ActionsMenu = ActionsMenu + [["Flip Vehicle", [], "", -5, [["expression", 'player execVM "admintools\tools\flipVehicle.sqf"']], "1", "1"]];};
+if(EAT_AllowSuicide) then {ActionsMenu = ActionsMenu + [["Suicide", [], "", -5, [["expression", format[_EXECscript1,"suicide.sqf"]]], "1", "1"]];};
 ActionsMenu = ActionsMenu + [["", [], "", -5, [["expression", ""]], "1", "0"], ["Exit", [20], "", -5, [["expression", ""]], "1", "1"]];
 
 
@@ -89,5 +88,3 @@ TransformAnimalMenu =
 		["Main Menu", [20], "#USER:ActionMenu", -5, [["expression", ""]], "1", "1"]
 ];
 showCommandingMenu "#USER:ActionMenu";
-
-if(ActionMenuPlayers || ActionMenuAdmins) then {diag_log("Admin Tools: Actions_Menu.sqf loaded");};

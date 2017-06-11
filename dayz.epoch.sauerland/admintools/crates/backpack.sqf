@@ -9,9 +9,9 @@ _crateName = "Backpack Tent";
 _classname = "TentStorageDomed2";
 
 // Tool use logger
-if(logMajorTool) then {
-	usageLogger = format["%1 %2 -- has spawned a %3 %4",name _player,getPlayerUID _player,_LocalOrGlobal,_crateName];
-	[] spawn {publicVariable "usageLogger";};
+if(EAT_logMajorTool) then {
+	EAT_PVEH_usageLogger = format["%1 %2 -- has spawned a %3 %4",name _player,getPlayerUID _player,_LocalOrGlobal,_crateName];
+	[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 };
 
 // Location of player and crate
@@ -34,7 +34,7 @@ clearMagazineCargoGlobal _spawnCrate;
 clearBackpackCargoGlobal _spawnCrate;
 
 // Add gear
-{_spawnCrate addBackpackCargoGlobal _x;}forEach backpackCrateContents;
+{_spawnCrate addBackpackCargoGlobal _x;}forEach EAT_backpackCrateContents;
 
 // Send text to spawner only
 titleText [format[_crateName + " spawned!"],"PLAIN DOWN"]; titleFadeOut 4;

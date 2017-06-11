@@ -26,6 +26,8 @@ if ((typeName _objectID == "SCALAR") || (typeName _objectUID == "SCALAR")) then 
 	_objectUID = nil;
 };
 
+// Epoch Admin Tools
+if (_object getVariable "MalSar" == 1) exitWith {};
 if (!((typeOf _object) in DZE_safeVehicle) && !locked _object) then {
 	//diag_log format["Object: %1, ObjectID: %2, ObjectUID: %3",_object,_objectID,_objectUID];
 	if (!(_objectID in dayz_serverIDMonitor) && isNil {_objectUID}) then { 

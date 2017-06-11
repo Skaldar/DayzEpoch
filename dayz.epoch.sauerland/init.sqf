@@ -122,9 +122,9 @@ call compile preprocessFileLineNumbers "code\compiles.sqf";
 call compile preprocessFileLineNumbers "dayz_code\init\compiles.sqf";
 #include "DZE_Hotfix_1.0.6.1A\init\compiles.sqf";
 progressLoadingScreen 0.25;
-call compile preprocessFileLineNumbers "scripts\traders\server_traders.sqf";
 call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
 call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
+call compile preprocessFileLineNumbers "scripts\traders\server_traders.sqf";
 call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\mission\sauerland.sqf"; //Add trader city objects locally on every machine early
 call compile preprocessFileLineNumbers "logistic\init.sqf";
 if (dayz_POIs && (toLower worldName == "chernarus")) then {call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\mission\chernarus\poi\init.sqf";}; //Add POI objects locally on every machine early
@@ -179,10 +179,11 @@ if (!isDedicated) then {[] execVM "Stats\stats.sqf"};
 [[24713, 21741,0],100] execVM "SAR_nuke_zeds.sqf";	// Oberberg
 [[11046, 15669,0],30] execVM "SAR_nuke_zeds.sqf"; // Hero
 [[15350, 18522,0],30] execVM "SAR_nuke_zeds.sqf"; // Airdealer*/
+
+
+//[] execVM 'CAGN\initiate.sqf'; 
 [] execVM "admintools\Activate.sqf"; // Epoch admin tools
-if (!isDedicated) then {
-[] execVM 'CAGN\initiate.sqf'; 
-};
+
 
 
 	   

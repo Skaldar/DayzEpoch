@@ -9,9 +9,9 @@ _crateName = "Building Crate";
 _classname = "USOrdnanceBox";
 
 // Tool use logger
-if(logMajorTool) then {
-	usageLogger = format["%1 %2 -- has spawned a %3 %4",name _player,getPlayerUID _player,_LocalOrGlobal,_crateName];
-	[] spawn {publicVariable "usageLogger";};
+if(EAT_logMajorTool) then {
+	EAT_PVEH_usageLogger = format["%1 %2 -- has spawned a %3 %4",name _player,getPlayerUID _player,_LocalOrGlobal,_crateName];
+	[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 };
 
 // Location of player and crate
@@ -34,8 +34,8 @@ clearMagazineCargoGlobal _spawnCrate;
 clearBackpackCargoGlobal _spawnCrate;
 
 // Add gear
-{_spawnCrate addWeaponCargoGlobal _x;}forEach buildingCrateWeapons;
-{_spawnCrate addMagazineCargoGlobal _x;}forEach buildingCrateMagazines;
+{_spawnCrate addWeaponCargoGlobal _x;}forEach EAT_buildingCrateWeapons;
+{_spawnCrate addMagazineCargoGlobal _x;}forEach EAT_buildingCrateMagazines;
 _spawnCrate addBackpackCargoGlobal ["DZ_LargeGunBag_EP1", 1];
 
 // Send text to spawner only

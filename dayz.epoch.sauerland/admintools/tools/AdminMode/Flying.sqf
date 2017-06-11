@@ -1,4 +1,4 @@
-if(isNil "flying2") then {flying2 = true;} else {flying2 = !flying2};
+if(isNil "EAT_flying2") then {EAT_flying2 = true;} else {EAT_flying2 = !EAT_flying2};
 
 forwardAndBackward = 4; 
 leftAndRight = 2;     
@@ -89,12 +89,12 @@ toggle_hover =
     };
 };
 
-if (flying2) then 
+if (EAT_flying2) then 
 {
 	// Tool use logger
-	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has ENABLED flying",name player,getPlayerUID player];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMinorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has ENABLED flying",name player,getPlayerUID player];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 
     keyForward = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 17) then {call move_forward;}"];     //W - Forward
@@ -106,9 +106,9 @@ if (flying2) then
     keyHover = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 57) then {call toggle_hover;}"];     //SpaceBar - Toggle Hover
 } else {
 	// Tool use logger
-	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has DISABLED flying",name player,getPlayerUID player];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMinorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has DISABLED flying",name player,getPlayerUID player];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 
     (findDisplay 46) displayRemoveEventHandler ["KeyDown", keyForward];
@@ -120,7 +120,7 @@ if (flying2) then
     (findDisplay 46) displayRemoveEventHandler ["KeyDown", keyHover];
 };
 
-while {flying2} do
+while {EAT_flying2} do
 {
     if (!isNil "hovering") then
     {
