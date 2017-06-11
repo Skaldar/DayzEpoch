@@ -83,6 +83,7 @@ Z_VehicleDistance = 80; // Max distance a vehicle can be sold or accessed from a
 Z_SingleCurrency = true; // Does your server use a single currency system?
 CurrencyName = "Reichsmark"; // If using single currency this is the currency display name.
 DZE_WeatherVariables = [10, 20, 5, 10, 0, 0.2, 0.2, 1, 0, 0.6, 0, 8, 25, 30, 0, false]; //See DynamicWeatherEffects.sqf for info on these values.
+DZE_TRADER_SPAWNMODE = false; // Default = false
 
 // EPOCH CONFIG VARIABLES END //
 
@@ -119,8 +120,11 @@ call compile preprocessFileLineNumbers "\z\addons\dayz_code\medical\setup_functi
 progressLoadingScreen 0.15;
 call compile preprocessFileLineNumbers "code\compiles.sqf";
 call compile preprocessFileLineNumbers "dayz_code\init\compiles.sqf";
+#include "DZE_Hotfix_1.0.6.1A\init\compiles.sqf";
 progressLoadingScreen 0.25;
 call compile preprocessFileLineNumbers "scripts\traders\server_traders.sqf";
+call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
+call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
 call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\mission\sauerland.sqf"; //Add trader city objects locally on every machine early
 call compile preprocessFileLineNumbers "logistic\init.sqf";
 if (dayz_POIs && (toLower worldName == "chernarus")) then {call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\mission\chernarus\poi\init.sqf";}; //Add POI objects locally on every machine early
@@ -170,7 +174,15 @@ execVM "scripts\zsc\playerHud.sqf";
 };
 if (!isDedicated) then {[] execVM "Stats\stats.sqf"};
 [] ExecVM "map_updates\mapupdate.sqf";
-[] execVM "25_safezone.sqf";
+//[] execVM "25_safezone.sqf";
+/*[[15487, 17015,0],100] execVM "SAR_nuke_zeds.sqf"; // Seedorf
+[[24713, 21741,0],100] execVM "SAR_nuke_zeds.sqf";	// Oberberg
+[[11046, 15669,0],30] execVM "SAR_nuke_zeds.sqf"; // Hero
+[[15350, 18522,0],30] execVM "SAR_nuke_zeds.sqf"; // Airdealer*/
+[] execVM "admintools\Activate.sqf"; // Epoch admin tools
+if (!isDedicated) then {
+[] execVM 'CAGN\initiate.sqf'; 
+};
 
 
 	   

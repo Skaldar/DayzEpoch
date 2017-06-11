@@ -93,4 +93,6 @@ class RscTitles {
 //#include "dayz_code\configs\CfgServerTrader.hpp"
 //#include "addons\SARGE\SAR_define.hpp"
 #include "spawn\dialogs.hpp"
+// Epoch Admin Tools
+#include "admintools\dialog.hpp"
 

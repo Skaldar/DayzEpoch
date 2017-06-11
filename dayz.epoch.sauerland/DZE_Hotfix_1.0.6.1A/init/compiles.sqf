@@ -44,4 +44,5 @@ if (!isDedicated) then {
 		dayz_temperatur = (dayz_temperatur min dayz_temperaturmax) max dayz_temperaturmin;
 	};
 	Diag_Log "DZE_Hotfix_1.0.6.1A: dayz_NutritionSystem patched";
+	execVM "DZE_Hotfix_1.0.6.1A\groups\init.sqf";
 };
