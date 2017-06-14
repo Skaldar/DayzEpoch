@@ -39,7 +39,7 @@
 	EAT_szZombieDistance = 20; // Distance to remove zombies from player in the zone
 	EAT_szUseSpeedLimits = false; // Enforce a speed limit for vehicles to stop from pushing players out of zone
 	EAT_szSpeedLimit = 35; // Max speed for vehicles inside the zones
-	EAT_szUseHint = false; // Use hints for messages? (will display at bottom of screen instead if false)
+	EAT_szUseHint = true; // Use hints for messages? (will display at bottom of screen instead if false)
 	EAT_szAdminWeapon = false; // Allow admins to use weapons in the safe zones? (True = yes)
 	
 	// You can find these in the sensors section of the mission.sqm for each map
@@ -61,7 +61,7 @@
 	EAT_vehicleGod = true;
 	EAT_playerESP = false;
 	EAT_enhancedESP = false;
-	EAT_grassOff = true;
+	EAT_grassOff = false;
 	EAT_infAmmo = true;
 	EAT_speedBoost = false;
 	EAT_fastWalk = false;

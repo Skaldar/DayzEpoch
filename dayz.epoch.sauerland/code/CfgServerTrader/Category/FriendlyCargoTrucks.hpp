@@ -74,6 +74,86 @@ class Category_564 {
 		buy[] = {20000,"worth"};
 		sell[] = {10000,"worth"};
 	};
+	class gaf_10t_gl_g {
+		type = "trade_any_vehicle";
+		buy[] = {20000,"worth"};
+		sell[] = {10000,"worth"};
+	};
+	class gaf_10t_gl_cfor {
+		type = "trade_any_vehicle";
+		buy[] = {20000,"worth"};
+		sell[] = {10000,"worth"};
+	};
+	class gaf_10t_gl_w {
+		type = "trade_any_vehicle";
+		buy[] = {20000,"worth"};
+		sell[] = {10000,"worth"};
+	};
+	class gaf_10t_gl_bfor {
+		type = "trade_any_vehicle";
+		buy[] = {20000,"worth"};
+		sell[] = {10000,"worth"};
+	};
+	class gaf_10t_gl_d {
+		type = "trade_any_vehicle";
+		buy[] = {20000,"worth"};
+		sell[] = {10000,"worth"};
+	};
+	class gaf_10t_gl_tfor {
+		type = "trade_any_vehicle";
+		buy[] = {20000,"worth"};
+		sell[] = {10000,"worth"};
+	};
+	class gaf_10t_gl_isaf {
+		type = "trade_any_vehicle";
+		buy[] = {20000,"worth"};
+		sell[] = {10000,"worth"};
+	};
+	class gaf_10t_gl_un {
+		type = "trade_any_vehicle";
+		buy[] = {20000,"worth"};
+		sell[] = {10000,"worth"};
+	};
+	class gaf_2t_gl_g {
+		type = "trade_any_vehicle";
+		buy[] = {20000,"worth"};
+		sell[] = {10000,"worth"};
+	};
+	class gaf_2t_gl_cfor {
+		type = "trade_any_vehicle";
+		buy[] = {20000,"worth"};
+		sell[] = {10000,"worth"};
+	};
+	class gaf_2t_gl_w {
+		type = "trade_any_vehicle";
+		buy[] = {20000,"worth"};
+		sell[] = {10000,"worth"};
+	};
+	class gaf_2t_gl_bfor {
+		type = "trade_any_vehicle";
+		buy[] = {20000,"worth"};
+		sell[] = {10000,"worth"};
+	};
+	class gaf_2t_gl_d {
+		type = "trade_any_vehicle";
+		buy[] = {20000,"worth"};
+		sell[] = {10000,"worth"};
+	};
+	class gaf_2t_gl_tfor {
+		type = "trade_any_vehicle";
+		buy[] = {20000,"worth"};
+		sell[] = {10000,"worth"};
+	};
+	class gaf_2t_gl_isaf {
+		type = "trade_any_vehicle";
+		buy[] = {20000,"worth"};
+		sell[] = {10000,"worth"};
+	};
+	class gaf_2t_gl_un {
+		type = "trade_any_vehicle";
+		buy[] = {20000,"worth"};
+		sell[] = {10000,"worth"};
+	};
 };
 
 class Category_570 {

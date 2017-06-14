@@ -112,8 +112,10 @@ dayz_resetSelfActions = {
 	s_player_manageDoor = -1;
 
 	// Custom below
+	//Banking
 	s_givemoney_dialog = -1;
 	s_bank_dialog = -1;
 	s_player_checkWallet = -1;
+	s_player_clothes = -1; // Zabns take clothes
 };
 call dayz_resetSelfActions;

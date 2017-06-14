@@ -172,17 +172,14 @@ execVM "scripts\zsc\playerHud.sqf";
 	3 fadeMusic 1;
 	endLoadingScreen;
 };
-if (!isDedicated) then {[] execVM "Stats\stats.sqf"};
+if (!isDedicated) then {
+[] execVM "Stats\stats.sqf"
 [] ExecVM "map_updates\mapupdate.sqf";
-//[] execVM "25_safezone.sqf";
-/*[[15487, 17015,0],100] execVM "SAR_nuke_zeds.sqf"; // Seedorf
-[[24713, 21741,0],100] execVM "SAR_nuke_zeds.sqf";	// Oberberg
-[[11046, 15669,0],30] execVM "SAR_nuke_zeds.sqf"; // Hero
-[[15350, 18522,0],30] execVM "SAR_nuke_zeds.sqf"; // Airdealer*/
+[] execVM "scripts\service_points\service_point.sqf";
 
 
-//[] execVM 'CAGN\initiate.sqf'; 
-[] execVM "admintools\Activate.sqf"; // Epoch admin tools
+ 
+[] execVM "admintools\Activate.sqf";}; // Epoch admin tools
 
 
 

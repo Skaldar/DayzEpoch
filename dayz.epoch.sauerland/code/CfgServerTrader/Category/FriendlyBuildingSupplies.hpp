@@ -119,4 +119,9 @@ class Category_678 {
 		buy[] = {60000,"worth"};
 		sell[] = {40000,"worth"};
 	};
+	class m240_nest_kit {
+		type = "trade_items";
+		buy[] = {100000,"worth"};
+		sell[] = {60000,"worth"};
+	};
 };

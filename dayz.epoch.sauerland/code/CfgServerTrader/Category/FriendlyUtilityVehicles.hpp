@@ -94,6 +94,36 @@ class Category_565 {
 		buy[] = {8000,"worth"};
 		sell[] = {4000,"worth"};
 	};
+	class gaf_wolf_cfor {
+		type = "trade_any_vehicle";
+		buy[] = {8000,"worth"};
+		sell[] = {4000,"worth"};
+	};
+	class gaf_wolf_d {
+		type = "trade_any_vehicle";
+		buy[] = {8000,"worth"};
+		sell[] = {4000,"worth"};
+	};
+	class gaf_wolf_tfor {
+		type = "trade_any_vehicle";
+		buy[] = {8000,"worth"};
+		sell[] = {4000,"worth"};
+	};
+	class gaf_wolf_isaf {
+		type = "trade_any_vehicle";
+		buy[] = {8000,"worth"};
+		sell[] = {4000,"worth"};
+	};
+	class gaf_wolf_w {
+		type = "trade_any_vehicle";
+		buy[] = {8000,"worth"};
+		sell[] = {4000,"worth"};
+	};
+	class gaf_wolf_bfor {
+		type = "trade_any_vehicle";
+		buy[] = {8000,"worth"};
+		sell[] = {4000,"worth"};
+	};
 };
 
 class Category_568 {

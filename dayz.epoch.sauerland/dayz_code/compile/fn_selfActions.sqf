@@ -643,45 +643,116 @@ if (!isNull _cursorTarget && !_inVehicle && !_isPZombie && (player distance _cur
 		s_player_plot_boundary = -1;
 	};
 	
-	if (DZE_HeliLift) then {
-		_liftHeli = objNull;
-		_found = false;	
-		_allowTow = false;
-		if ((count (crew _cursorTarget)) == 0) then {
-			{
-				if (!_allowTow) then {
-					_allowTow = _cursorTarget isKindOf _x;
-				};
-			} count DZE_HeliAllowToTow;
-		};
-
-		if (_allowTow) then {
-			{
-				if (!_found) then {
-					_posL = [_x] call FNC_getPos;
-					_posC = [_cursorTarget] call FNC_getPos;
-					_height = (_posL select 2) - (_posC select 2);
-					_hasAttached = _x getVariable["hasAttached",false];
-					if ((_height < 15) && {_height > 5} && {typeName _hasAttached != "OBJECT"}) then {
-						if (((abs((_posL select 0) - (_posC select 0))) < 10) && {(abs((_posL select 1) - (_posC select 1))) < 10}) then {
-							_liftHeli = _x;
-							_found = true;
-						};
-					};
-				};
-			} count (player nearEntities [DZE_HeliAllowTowFrom,15]);
-		};
-
-		_attached = _cursorTarget getVariable["attached",false];
-		if (_found && {_allowTow} && {!locked _cursorTarget} && {!_isPZombie} && {typeName _attached != "OBJECT"}) then {
-			if (s_player_heli_lift < 0) then {
-				s_player_heli_lift = player addAction [localize "STR_EPOCH_ACTIONS_ATTACHTOHELI", "\z\addons\dayz_code\actions\player_heliLift.sqf",[_liftHeli,_cursorTarget], -10, false, true];
-			};
-		} else {
-			player removeAction s_player_heli_lift;
-			s_player_heli_lift = -1;
-		};
-	};
+  //----DZE_HeliLift START-----
+    if (DZE_HeliLift) then {
+        _liftHeli = objNull;
+        _found = false;
+        _allowTow = false;
+        _lightweight = false;
+        _mediumweight = false;
+        _heavyweight = false;
+        _superheavyweight = false;
+        if ((count (crew _cursorTarget)) == 0) then {
+            { if(!_allowTow) then { _allowTow = _cursorTarget isKindOf _x; }; } forEach DZE_HeliAllowToTowLight;
+            if(_allowTow) then { _lightweight = true; } else { _lightweight = false; };
+        };
+        if ((count (crew _cursorTarget)) == 0) then {
+            { if(!_allowTow) then { _allowTow = _cursorTarget isKindOf _x; }; } forEach DZE_HeliAllowToTowMedium;
+            if(_allowTow and !_lightweight) then { _mediumweight = true; } else { _mediumweight = false; };
+        };
+        if ((count (crew _cursorTarget)) == 0) then {
+            { if(!_allowTow) then { _allowTow = _cursorTarget isKindOf _x; }; } forEach DZE_HeliAllowToTowHeavy;
+            if(_allowTow and !_lightweight and !_mediumweight) then { _heavyweight = true; } else { _heavyweight = false; };
+        };
+        if ((count (crew _cursorTarget)) == 0) then {
+            { if(!_allowTow) then { _allowTow = _cursorTarget isKindOf _x; }; } forEach DZE_HeliAllowToTowSuperHeavy;
+            if(_allowTow && !_lightweight && !_mediumweight && !_heavyweight) then { _superheavyweight = true; } else { _superheavyweight = false; };
+        };
+        //diag_log format["CREW: %1 ALLOW: %2",(count (crew _cursorTarget)),_allowTow];
+        if (_allowTow && _lightweight && !_found) then {
+            _liftHelis = nearestObjects [player, DZE_HeliAllowTowFromLight, 15];
+            {
+                if(!_found) then {
+                    _posL = getPos _x;
+                    _posC = getPos _cursorTarget;
+                    _height = (_posL select 2) - (_posC select 2);
+                    _hasAttached = _x getVariable["hasAttached",false];
+                    if(_height < 15 && _height > 5 && (typeName _hasAttached != "OBJECT")) then {
+                        if(((abs((_posL select 0) - (_posC select 0))) < 10) && ((abs((_posL select 1) - (_posC select 1))) < 10)) then {
+                            _liftHeli = _x;
+                            _found = true;
+                        };
+                    };
+                };
+            } forEach _liftHelis;
+        };
+        if ( _allowTow && !_found && ( _mediumweight || _lightweight ) ) then {
+            _liftHelis = nearestObjects [player, DZE_HeliAllowTowFromMedium, 15];
+            {
+                if(!_found) then {
+                    _posL = getPos _x;
+                    _posC = getPos _cursorTarget;
+                    _height = (_posL select 2) - (_posC select 2);
+                    _hasAttached = _x getVariable["hasAttached",false];
+                    if(_height < 15 && _height > 5 && (typeName _hasAttached != "OBJECT")) then {
+                        if(((abs((_posL select 0) - (_posC select 0))) < 10) && ((abs((_posL select 1) - (_posC select 1))) < 10)) then {
+                            _liftHeli = _x;
+                            _found = true;
+                        };
+                    };
+                };
+            } forEach _liftHelis;
+        };
+        if ( _allowTow && !_found && ( _heavyweight || _mediumweight || _lightweight ) ) then {
+            _liftHelis = nearestObjects [player, DZE_HeliAllowTowFromHeavy, 15];
+            {
+                if(!_found) then {
+                    _posL = getPos _x;
+                    _posC = getPos _cursorTarget;
+                    _height = (_posL select 2) - (_posC select 2);
+                    _hasAttached = _x getVariable["hasAttached",false];
+                    if(_height < 15 && _height > 5 && (typeName _hasAttached != "OBJECT")) then {
+                        if(((abs((_posL select 0) - (_posC select 0))) < 10) && ((abs((_posL select 1) - (_posC select 1))) < 10)) then {
+                            _liftHeli = _x;
+                            _found = true;
+                        };
+                    };
+                };
+            } forEach _liftHelis;
+        };
+        if ( _allowTow && !_found && ( _superheavyweight || _heavyweight || _mediumweight || _lightweight ) ) then {
+            _liftHelis = nearestObjects [player, DZE_HeliAllowTowFromSuperHeavy, 15];
+            {
+                if(!_found) then {
+                    _posL = getPos _x;
+                    _posC = getPos _cursorTarget;
+                    _height = (_posL select 2) - (_posC select 2);
+                    _hasAttached = _x getVariable["hasAttached",false];
+                    if(_height < 15 && _height > 5 && (typeName _hasAttached != "OBJECT")) then {
+                        if(((abs((_posL select 0) - (_posC select 0))) < 10) && ((abs((_posL select 1) - (_posC select 1))) < 10)) then {
+                            _liftHeli = _x;
+                            _found = true;
+                        };
+                    };
+                };
+            } forEach _liftHelis;
+        };
+        //diag_log format["HELI: %1 TARGET: %2",_found,_cursorTarget];
+        _attached = _cursorTarget getVariable["attached",false];
+        if(_found && _allowTow && _canDo && !locked _cursorTarget && !_isPZombie && (typeName _attached != "OBJECT")) then {
+            if ((_cursortarget getVariable ["MFTowInTow", false]) || (_cursortarget getVariable ["MFTowIsTowing", false])) then {
+                cutText ["You cannot lift this vehicle because it is towing or being towed.", "PLAIN DOWN"];
+            } else {
+                if (s_player_heli_lift < 0) then {
+                    s_player_heli_lift = player addAction [("<t color=""#ffab00"">" + ("Attach to Heli") + "</t>"), "\z\addons\dayz_code\actions\player_heliLift.sqf",[_liftHeli,_cursorTarget], -10, false, true, "",""];
+                };
+            };
+        } else {
+            player removeAction s_player_heli_lift;
+            s_player_heli_lift = -1;
+        };
+    };
+    //----DZE_HeliLift END-----
 	
 	// Allow Owner to lock and unlock vehicle  
 	if (_player_lockUnlock_crtl) then {
@@ -908,6 +979,20 @@ if (!isNull _cursorTarget && !_inVehicle && !_isPZombie && (player distance _cur
 		player removeAction s_player_fillgen;
 		s_player_fillgen = -1;
 	};
+	
+	//TakeClothes
+	_clothesTaken = _cursorTarget getVariable["clothesTaken",false];
+_isZombie = _cursorTarget isKindOf "zZombie_base"; // Add this here now since epoch 1.0.6 doesn't initialize this where this will go.
+
+// Take clothes by Zabn
+if (_isMan and !_isAlive and !_isZombie and !_clothesTaken) then {
+	if (s_player_clothes < 0) then {
+		s_player_clothes = player addAction [format["<t color='#0096ff'>Take Clothes</t>"], "scripts\takeClothes.sqf",_cursorTarget,0, false,true];
+	};
+} else {
+	player removeAction s_player_clothes;
+	s_player_clothes = -1;
+};
 
 	//Towing with tow truck
 	/*
@@ -1194,6 +1279,9 @@ if ((_typeOfCursorTarget in DZE_MoneyStorageClasses || _isVehicle) && {!_isMan} 
 	s_player_checkWallet = -1;
 	player removeAction s_atm_dialog;
 	s_atm_dialog = -1;
+	// Take Clothes by Zabn
+	player removeAction s_player_clothes;
+	s_player_clothes = -1;
 };
 
 //Dog actions on player self
