@@ -12,3 +12,6 @@ Single Currency (Reichsmark)
 SpawnSelection
 BHD
 Safezone
+AdminTools
+Take Clothes
+Service Points
