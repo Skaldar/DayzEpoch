@@ -124,4 +124,9 @@ class Category_678 {
 		buy[] = {100000,"worth"};
 		sell[] = {60000,"worth"};
 	};
+	class fuel_pump_kit {
+		type = "trade_items";
+		buy[] = {1000000,"worth"};
+		sell[] = {600000,"worth"};
+	};
 };

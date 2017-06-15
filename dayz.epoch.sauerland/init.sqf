@@ -173,12 +173,14 @@ execVM "scripts\zsc\playerHud.sqf";
 	endLoadingScreen;
 };
 //if (!isDedicated) then {
+[] execVM "Stats\stats.sqf";
 [] ExecVM "map_updates\mapupdate.sqf";
-//[] execVM "scripts\service_point\service_point.sqf";
+[] execVM "admintools\Activate.sqf"; // Epoch admin tools
+[] execVM "scripts\service_points\service_point.sqf";
 //};
 
  
-[] execVM "admintools\Activate.sqf"; // Epoch admin tools
+
 
 
 
