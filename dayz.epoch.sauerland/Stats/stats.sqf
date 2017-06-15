@@ -45,7 +45,7 @@ fnc_debug = {
 			_pic = (gettext (configFile >> 'CfgVehicles' >> (typeof vehicle player) >> 'picture'));	
 		};
 		_level = "Stats\hu\survivor.paa";
-		_timeleft= _combattimeout-time;
+		//_timeleft= _combattimeout-time;
 		_kills = 		player getVariable["zombieKills",0];
 		_killsH = 		player getVariable["humanKills",0];
 		_killsB = 		player getVariable["banditKills",0];
