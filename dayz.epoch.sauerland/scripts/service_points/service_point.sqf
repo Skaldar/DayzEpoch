@@ -47,7 +47,7 @@ _cycleTime = 5; // Time in sections for how often the action menu will be refres
 // refuel settings
 _refuel_enable = true; // enable or disable the refuel option
 _refuel_costs = [
-	["Land","free"], // All land vehicles are free to refuel. Free has to be in ""
+	["Land",100], // All land vehicles are free to refuel. Free has to be in ""
 	["Air",1000]	//1000 worth is 1 10oz gold for all air vehicles
 ];
 _refuel_updateInterval = 1; // update interval (in seconds)
